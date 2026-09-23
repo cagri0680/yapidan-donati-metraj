@@ -1,0 +1,70 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Donatı birim kontrolü | Yapıdan eğitim örneği</title><meta name="description" content="Çap, boy ve adet ile teorik donatı kütlesini birim dönüşümleri ve ara adımlarıyla inceleyin. Tarayıcıda çalışan eğitim örneği."><style>:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#172c3e;background:#eef2f5;line-height:1.6}*{box-sizing:border-box}body{margin:0}main{max-width:1050px;margin:auto;padding:42px 24px 24px}header{max-width:800px}.eyebrow{font-size:12px;font-weight:750;letter-spacing:.13em;color:#316481}h1{font-size:clamp(30px,5vw,49px);line-height:1.14;letter-spacing:-.035em;margin:14px 0 20px}.intro{font-size:17px;color:#4f6170}.layout{display:grid;grid-template-columns:1fr 1.15fr;gap:22px;margin:30px 0}.card{padding:26px;background:#fff;border:1px solid #d8e2e9;border-radius:16px}h2{font-size:18px;margin:0 0 18px}label{display:block;font-size:14px;font-weight:650;margin:16px 0 6px}label span{font-weight:400;color:#596a76}input,select{width:100%;min-width:0;padding:12px;font:inherit;border:1px solid #9baeba;border-radius:7px;background:#fff;color:#172c3e}input:focus,select:focus,button:focus-visible,a:focus-visible{outline:3px solid #81b5ce;outline-offset:3px}.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}.hint{font-size:12px;color:#586b79}button{font:inherit;font-weight:650;border:0;border-radius:7px;background:#173f58;color:#fff;padding:12px 18px;cursor:pointer}button:hover{filter:brightness(1.13)}button:disabled{opacity:.5;cursor:not-allowed}.metric{font-size:46px;line-height:1.2;overflow-wrap:anywhere;margin:22px 0 6px;font-weight:750;letter-spacing:-.025em}.metric span{font-size:24px;font-weight:500}#single{color:#4f6170}dl{font-size:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}dt{color:#586b79}dd{margin:0;text-align:right;overflow-wrap:anywhere}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.secondary{font-size:13px;background:#edf3f6;color:#173f58}.scope{background:#fff;border-left:4px solid #47778f;padding:24px;border-radius:7px;font-size:14px}.scope p{margin:10px 0}a{color:#164f76;text-underline-offset:3px}.error{color:#a32222;background:#fff0ed;padding:10px;border-radius:5px;font-size:14px}#feedback{font-size:12px}footer{font-size:12px;color:#637483;margin-top:24px}@media(max-width:680px){main{padding:24px 14px}.layout{grid-template-columns:1fr}.card{padding:20px}.metric{font-size:39px}dl{grid-template-columns:1fr;gap:3px}dd{text-align:left;margin-bottom:8px}}
+</style></head>
+<body><main><header><p class="eyebrow">YAPIDAN • HESAP DOĞRULAMA ÖRNEĞİ</p><h1>Donatı kütlesini<br>birimleriyle kontrol et.</h1><p class="intro">Yalnızca bir sonuç değil, o sonuca giden dönüşümler. Bu örnek ideal dairesel kesit ve sabit yoğunluk kabulüyle çalışır.</p></header>
+<div class="layout"><section class="card"><h2>1. Girdiler</h2><form id="calc-form" novalidate><label for="diameter">Çap <span>mm</span></label><input id="diameter" name="diameter" type="text" inputmode="decimal" value="12" autocomplete="off"><div class="pair"><div><label for="length">Tek çubuk boyu</label><input id="length" name="length" type="text" inputmode="decimal" value="12" autocomplete="off"></div><div><label for="unit">Boy birimi</label><select id="unit"><option value="m">metre (m)</option><option value="cm">santimetre (cm)</option><option value="mm">milimetre (mm)</option></select></div></div><label for="count">Adet</label><input id="count" name="count" type="text" inputmode="numeric" value="1" autocomplete="off"><p class="hint">Ondalık: 12,5 veya 12.5. Binlik ayırıcı kullanmayın. Adet tam sayı olmalıdır. Eğitim arayüzü sınırları: çap 0–1.000 mm, boy 0–10.000 m (0 hariç); adet 1–1.000.000. Bu sınırlar mühendislik önerisi değildir.</p><button type="submit">Hesabı göster</button><p id="error" class="error" role="alert" hidden></p></form></section>
+<section class="card result" aria-live="polite"><h2>2. Teorik sonuç</h2><p class="metric"><output id="total">—</output> <span>kg</span></p><p id="single"></p><dl id="steps"></dl><div class="actions"><button id="copy" type="button" class="secondary">Hesap izini kopyala</button><button id="csv" type="button" class="secondary">CSV al</button></div><p id="feedback" role="status"></p></section></div>
+<section class="scope"><h2>Bu sonuç neyi söylemez?</h2><p>Yoğunluk kabulü <strong>7.850 kg/m³</strong>. Model, ideal dairesel kesit için <strong>m = π × (d/1000)² / 4 × 7.850 × L × n</strong> bağıntısıdır. d milimetre, L metre, n adettir. Ara değerler yuvarlanmaz, yalnızca ekranda gösterilen sonuç yuvarlanır.</p><p>Bindirme, büküm, kesim firesi, nervür geometrisi, ürün toleransları ve taşıma kapasitesi kapsam dışıdır. Bu hesap bir tartım belgesi, uygunluk sertifikası veya proje onayı değildir. Nominal/yuvarlanmış tablolarla küçük farklar oluşabilir.</p><p>Bu bağımsız eğitim örneği için Yapıdan’ın açıklama ve tablosunu inceleyin: <a id="source-link" href="https://yapidan.com/donati/agirlik">Donatı ağırlığı tablosu ve hesap aracı</a>.</p></section>
+<footer><p>Model sürümü 1.0.0 • 22 Eylül 2026 • Hesap tarayıcınızda yapılır. Bu dosyalar girdi toplamaz ve harici API kullanmaz. Barındıran platformun kendi gizlilik koşulları ayrıca geçerlidir.</p></footer></main><script>/* Bağımsız eğitim örneği. Standart/ürün uygunluğu denetimi değildir. */
+(function (root) {
+  'use strict';
+  const DENSITY = 7850;
+  function number(value, label) {
+    if (typeof value === 'number') {
+      if (!Number.isFinite(value)) throw new Error(label + ': sonlu bir sayı girin.');
+      return value;
+    }
+    if (typeof value !== 'string' || value.trim() === '') throw new Error(label + ': alan boş bırakılamaz.');
+    const raw = value.trim();
+    if (!/^[+-]?(?:\d+(?:[.,]\d+)?|[.,]\d+)$/.test(raw)) {
+      throw new Error(label + ': binlik ayırıcı kullanmadan sayı girin. Ondalık için virgül veya nokta kullanın.');
+    }
+    if (/^[+-]?[1-9]\d{0,2}[.,]\d{3}$/.test(raw)) {
+      const bin = raw.replace(/[.,]/g, '');
+      const ond = String(Number(raw.replace(',', '.'))).replace('.', ',');
+      const ondTemiz = !/^[+-]?[1-9][0-9]{0,2}[.,][0-9]{3}$/.test(ond);
+      throw new Error(label + ': "' + raw + '" belirsiz. Bin için ' + bin +
+        (ondTemiz ? ', ondalık için ' + ond : ', ondalık için daha küçük birim') + ' yazın.');
+    }
+    const n = Number(raw.replace(',', '.'));
+    if (!Number.isFinite(n)) throw new Error(label + ': geçerli bir sayı girin.');
+    return n;
+  }
+  function calculate(input) {
+    if (!input || typeof input !== 'object') throw new Error('Girdi nesnesi gerekli.');
+    const d = number(input.diameter_mm, 'Çap');
+    const length = number(input.length, 'Boy');
+    const count = number(input.count, 'Adet');
+    const factors = {mm: 0.001, cm: 0.01, m: 1};
+    if (!Object.prototype.hasOwnProperty.call(factors, input.length_unit)) throw new Error('Boy birimi m, cm veya mm olmalıdır.');
+    const length_m = length * factors[input.length_unit];
+    if (d <= 0 || d > 1000) throw new Error('Bu eğitim demosunda çap 0’dan büyük ve en fazla 1.000 mm olmalıdır.');
+    if (length_m <= 0 || length_m > 10000) throw new Error('Bu eğitim demosunda boy 0’dan büyük ve en fazla 10.000 m olmalıdır.');
+    if (!Number.isInteger(count) || count < 1 || count > 1000000) throw new Error('Adet 1 ile 1.000.000 arasında tam sayı olmalıdır.');
+    const diameter_m = d / 1000;
+    const area_m2 = Math.PI * diameter_m * diameter_m / 4;
+    const kg_per_m = area_m2 * DENSITY;
+    const single_kg = kg_per_m * length_m;
+    const total_kg = single_kg * count;
+    if (![diameter_m, area_m2, kg_per_m, single_kg, total_kg].every(x => Number.isFinite(x) && x > 0)) throw new Error('Hesap aralığı aşıldı; değerler gösterilemeyecek kadar küçük veya büyük.');
+    return {diameter_mm:d, diameter_m, length_m, count, density_kg_m3:DENSITY, area_m2, kg_per_m, single_kg, total_kg, origin:'synthetic_calculated', model_version:'1.0.0'};
+  }
+  const api = Object.freeze({calculate, number, DENSITY});
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  else root.RebarDemo = api;
+})(typeof window !== 'undefined' ? window : globalThis);
+</script><script>(function(){'use strict';let result=null;
+const el=id=>document.getElementById(id);
+const fmt=(n,d=6)=>n!==0&&Math.abs(n)<Math.pow(10,-d)?n.toExponential(6).replace('.',','):new Intl.NumberFormat('tr-TR',{maximumFractionDigits:d}).format(n);
+function trace(){return ['Yapıdan bağımsız eğitim örneği','Çap: '+result.diameter_mm+' mm','Boy: '+result.length_m+' m','Adet: '+result.count,'Yoğunluk kabulü: '+result.density_kg_m3+' kg/m³','Kesit alanı: '+result.area_m2+' m²','Birim kütle: '+result.kg_per_m+' kg/m','Toplam teorik kütle: '+result.total_kg+' kg','Model: ideal dairesel kesit. Tasarım/uygunluk denetimi değildir.'].join('\n');}
+function render(){el('error').hidden=true;el('feedback').textContent='';
+try{result=RebarDemo.calculate({diameter_mm:el('diameter').value,length:el('length').value,length_unit:el('unit').value,count:el('count').value});
+el('total').textContent=fmt(result.total_kg,4);el('single').textContent='Tek çubuk: '+fmt(result.single_kg,4)+' kg';
+el('steps').replaceChildren();[['Çapın metre karşılığı',fmt(result.diameter_m,6)+' m'],['Boyun metre karşılığı',fmt(result.length_m,6)+' m'],['İdeal kesit alanı',fmt(result.area_m2,10)+' m²'],['Birim kütle',fmt(result.kg_per_m,8)+' kg/m'],['Adet',fmt(result.count,0)]].forEach(([key,val])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=key;dd.textContent=val;el('steps').append(dt,dd);});el('copy').disabled=false;el('csv').disabled=false;
+}catch(e){result=null;el('total').textContent='—';el('single').textContent='Geçerli girdilerle yeniden hesaplayın.';el('steps').replaceChildren();el('error').textContent=e.message;el('error').hidden=false;el('copy').disabled=true;el('csv').disabled=true;}}
+el('calc-form').addEventListener('input',render);
+el('calc-form').addEventListener('change',render);
+el('calc-form').addEventListener('submit',e=>{e.preventDefault();render();});
+el('copy').addEventListener('click',async()=>{if(!result)return;try{await navigator.clipboard.writeText(trace());el('feedback').textContent='Hesap izi kopyalandı.';}catch(_){el('feedback').textContent='Tarayıcı panoya izin vermedi. CSV dosyası alınabilir.';}});
+el('csv').addEventListener('click',()=>{if(!result)return;const keys=['diameter_mm','length_m','count','density_kg_m3','area_m2','kg_per_m','single_kg','total_kg','origin','model_version'];const txt=keys.join(',')+'\r\n'+keys.map(k=>result[k]).join(',')+'\r\n';const blob=new Blob([txt],{type:'text/csv;charset=utf-8'});const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='donati_teorik_hesap.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);el('feedback').textContent='Hesap CSV dosyası oluşturuldu.';});
+render();})();
+</script></body></html>
