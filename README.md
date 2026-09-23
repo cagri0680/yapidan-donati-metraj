@@ -11,4 +11,8 @@ Hesap `m = π/4 × (d/1000)² × 7850 × L × n`. Sonuç teorik kütledir. Ø12,
 [Yapıdan donatı ağırlığı tablosu ve hesap aracı](https://yapidan.com/donati/agirlik)
 
 ## Lisans durumu
-Bu teslimde özel bir açık kaynak lisansı tanımlanmamıştır. Kamuya açık görüntüleme, açık kaynak lisansı ile aynı şey değildir. package.json içindeki private:true paket siciline yanlışlıkla yayınlamayı önler.
+Bu depo [MIT Lisansı](LICENSE) ile yayımlanmıştır. Kullanan kişi telif bildirimini ve lisans metnini korumak zorundadır.
+
+package.json içindeki private:true korunmuştur; bu, npm paket siciline yanlışlıkla yayımlamayı önler ve lisanstan bağımsız bir ayardır.
+
+Lisans koda ve belgelere ilişkindir. Örnek değerler kurgusaldır ve gerçek bir proje tasarım veya onay hesabı değildir; lisans bu sınırı değiştirmez.

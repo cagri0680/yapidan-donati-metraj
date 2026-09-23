@@ -31,9 +31,9 @@
     const factors = {mm: 0.001, cm: 0.01, m: 1};
     if (!Object.prototype.hasOwnProperty.call(factors, input.length_unit)) throw new Error('Boy birimi m, cm veya mm olmalıdır.');
     const length_m = length * factors[input.length_unit];
-    if (d <= 0 || d > 1000) throw new Error('Bu eğitim demosunda çap 0’dan büyük ve en fazla 1.000 mm olmalıdır.');
-    if (length_m <= 0 || length_m > 10000) throw new Error('Bu eğitim demosunda boy 0’dan büyük ve en fazla 10.000 m olmalıdır.');
-    if (!Number.isInteger(count) || count < 1 || count > 1000000) throw new Error('Adet 1 ile 1.000.000 arasında tam sayı olmalıdır.');
+    if (d <= 0 || d > 1000) throw new Error('Bu eğitim demosunda çap 0’dan büyük ve en fazla 1000 mm olmalıdır.');
+    if (length_m <= 0 || length_m > 10000) throw new Error('Bu eğitim demosunda boy 0’dan büyük ve en fazla 10000 m olmalıdır.');
+    if (!Number.isInteger(count) || count < 1 || count > 1000000) throw new Error('Adet 1 ile 1000000 arasında tam sayı olmalıdır.');
     const diameter_m = d / 1000;
     const area_m2 = Math.PI * diameter_m * diameter_m / 4;
     const kg_per_m = area_m2 * DENSITY;
